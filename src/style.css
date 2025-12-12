@@ -1,0 +1,57 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --design-width: 1920;
+  --design-height: 1080;
+  --design-rem-size: 16;
+  font-size: if(media(width>=3840px):32px; media(width>=2560px):24px; media(width>=1920px):16px; else:12px);
+  /* 计算vw/vh单位 */
+  --vw-unit: calc(100vw / var(--design-width));
+  --vh-unit: calc(100vh / var(--design-height));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+
+/* vw适配函数 用于容器 */
+@function --vw(--px) {
+  result: calc(var(--px) * var(--vw-unit));
+}
+
+@function --vh(--px) {
+  result: calc(var(--px) * var(--vh-unit));
+}
+
+/* rem转换函数 用于字体大小、padding */
+@function --size(--px) {
+  result: round(up, calc(var(--px) / var(--design-rem-size) * 1rem), 1px);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
